@@ -11,3 +11,5 @@ define('DB_NAME', 'twitter');
 define('DB_USER', 'root');
 // пароль для подключения к БД
 define('DB_PASS', 'root');
+// подключение массива сессии
+session_start();

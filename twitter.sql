@@ -1,6 +1,6 @@
 -- phpMyAdmin SQL Dump
 -- version 5.1.1
--- https://www.phpmyadmin.net/
+-- http://www.phpmyadmin.net/
 --
 -- Хост: localhost
 -- Версия сервера: 5.7.35-0ubuntu0.18.04.2
@@ -79,15 +79,15 @@ TRUNCATE TABLE `posts`;
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `text`, `image`, `date`) VALUES
-(1, 1, 'Сообщение Марии Lorem ipsum dolor sit amet, consectetur.', 'https://picsum.photos/400/300?random=1', '2021-01-07 12:52:27'),
+(1, 1, 'Сообщение Марии Lorem ipsum dolor sit amet, consectetur.', 'http://picsum.photos/400/300?random=1', '2021-01-07 12:52:27'),
 (2, 2, 'Сообщение Брока Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis dolorem eaque et, explicabo facere facilis harum laboriosam magni nobis numquam provident quam rem rerum, vero? Nostrum porro ratione sed.', NULL, '2021-01-11 12:53:27'),
 (5, 3, 'Где детонатор?', NULL, '2011-02-14 03:04:41'),
-(6, 2, 'По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст.', 'https://fish-text.ru/images/logo.png', '2013-03-05 12:44:32'),
-(7, 5, 'Зарегался на вк, хороший сервис и не банят', 'https://i2.wp.com/media.globalnews.ca/videostatic/news/vamt80qbaq-94ovmaxjqg/trumptwitterupdate.jpg?w=500&quality=70&strip=all', '2016-05-02 08:27:00'),
-(8, 4, 'По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст.', 'https://licenceindia.s3.ap-south-1.amazonaws.com/s3fs-public/news27novstep10licenseindia105535dde829e97bf4.jpg', '2015-01-11 08:12:32'),
-(9, 3, 'Где детонатор?!? Я тебя спрашиваю!!111', 'https://www.meme-arsenal.com/memes/27606cb09d10f670389750cffb4d900d.jpg', '2011-02-14 03:05:00'),
+(6, 2, 'По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст.', 'http://fish-text.ru/images/logo.png', '2013-03-05 12:44:32'),
+(7, 5, 'Зарегался на вк, хороший сервис и не банят', 'http://i2.wp.com/media.globalnews.ca/videostatic/news/vamt80qbaq-94ovmaxjqg/trumptwitterupdate.jpg?w=500&quality=70&strip=all', '2016-05-02 08:27:00'),
+(8, 4, 'По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст.', 'http://licenceindia.s3.ap-south-1.amazonaws.com/s3fs-public/news27novstep10licenseindia105535dde829e97bf4.jpg', '2015-01-11 08:12:32'),
+(9, 3, 'Где детонатор?!? Я тебя спрашиваю!!111', 'http://www.meme-arsenal.com/memes/27606cb09d10f670389750cffb4d900d.jpg', '2011-02-14 03:05:00'),
 (10, 4, 'По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст.', NULL, '2017-01-11 09:10:32'),
-(11, 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ad alias commodi delectus eaque earum impedit ipsum nostrum officiis quasi repudiandae, rerum suscipit tenetur vero voluptatem! Architecto consequuntur cupiditate tempore!', 'https://picsum.photos/400/300.jpg', '2021-02-10 07:51:14');
+(11, 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ad alias commodi delectus eaque earum impedit ipsum nostrum officiis quasi repudiandae, rerum suscipit tenetur vero voluptatem! Architecto consequuntur cupiditate tempore!', 'http://picsum.photos/400/300.jpg', '2021-02-10 07:51:14');
 
 -- --------------------------------------------------------
 
