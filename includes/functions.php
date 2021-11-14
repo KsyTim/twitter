@@ -9,6 +9,12 @@ function debug($var, $stop = false)
   if ($stop) die;
 }
 
+function redirect($where)
+{
+  header("Location: " . get_url($where));
+  die;
+}
+
 function get_url($page = '')
 {
   return HOST . "/$page";
@@ -78,27 +84,38 @@ function register_user($auth_data)
   // также можно сделать дополнительные проверки для инпутов логина и пароля пользователя на длину, включения и т.п.
   if (!empty($user)) {
     $_SESSION['error'] = 'Пользователь ' . $auth_data['login'] . ' уже существует';
-    header("Location: " . get_url('register.php'));
-    die;
+    redirect('register.php');
   }
 
   if ($auth_data['pass'] !== $auth_data['pass2']) {
     $_SESSION['error'] = 'Пароли не совпадают';
-    header("Location: " . get_url('register.php'));
-    die;
+    redirect('register.php');
   }
 
   if (add_user($auth_data['login'], $auth_data['pass'])) {
-    header("Location: " . get_url());
-    die;
+    redirect('');
   }
 }
 
 function login($auth_data)
 {
-  debug($auth_data, true);
   if (empty($auth_data) || !isset($auth_data['login']) || empty($auth_data['login']) || !isset($auth_data['pass']) || empty($auth_data['pass'])) return false;
   $user = get_user_info($auth_data['login']);
+  if (empty($user)) {
+    $_SESSION['error'] = 'Логин или пароль был введен неправильно';
+    redirect('');
+  }
+
+  if (password_verify($auth_data['pass'], $user['pass'])) {
+    // если пароль введен правильно (сверка hash с паролем в db)
+    $_SESSION['user'] = $user;
+    $_SESSION['error'] = '';
+    redirect('user_posts.php?id=' . $user['id']);
+  } else {
+    $_SESSION['error'] = 'Пароль неверный';
+    redirect('');
+  }
+  // debug($auth_data, true);
 }
 
 function get_error_message()

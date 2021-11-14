@@ -34,5 +34,5 @@
     </ul>
   </section>
 <?php } else {
-  echo 'Постов нет';
+  echo '<div class="tweet-post__empty">Постов нет</div>';
 } ?>
