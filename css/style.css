@@ -224,6 +224,8 @@ button {
 }
 
 .tweet {
+  display: flex;
+  flex-direction: column;
   border-top: 1px solid rgb(235, 238, 240);
   border-bottom: 1px solid rgb(235, 238, 240);
   margin: 0 -15px;
@@ -424,8 +426,7 @@ button {
 }
 
 .tweet__footer {
-  display: flex;
-  justify-content: end;
+  align-self: flex-end;
 }
 
 .tweet__like {

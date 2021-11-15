@@ -1,6 +1,7 @@
 <?php
 include_once('includes/functions.php');
 $error = get_error_message();
+if (!logged_in()) redirect();
 // если передан через get, то берем из запроса
 if (isset($_GET['id']) && !empty($_GET['id'])) {
   $id = $_GET['id'];

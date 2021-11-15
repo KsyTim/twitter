@@ -26,7 +26,7 @@
                 </div>
               </div>
             </div>
-            <footer>
+            <footer class="tweet__footer">
               <?php
               // количество лайков - обращение к db
               $likes_count = get_likes_count($post['id']);
