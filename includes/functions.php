@@ -63,10 +63,12 @@ function db_query($sql, $exec = false)
 }
 
 // получить посты пользователя по id
-function get_posts($user_id = 0)
+function get_posts($user_id = 0, $sort = false)
 {
-  if ($user_id > 0) return db_query("SELECT posts.*, users.name, users.login, users.avatar FROM `posts` JOIN `users` ON users.id = posts.user_id WHERE posts.user_id = $user_id;")->fetchAll();
-  return db_query("SELECT posts.*, users.name, users.login, users.avatar FROM `posts` JOIN `users` ON users.id = posts.user_id")->fetchAll();
+  $sorting = 'DESC';
+  if ($sort) $sorting = 'ASC';
+  if ($user_id > 0) return db_query("SELECT posts.*, users.name, users.login, users.avatar FROM `posts` JOIN `users` ON users.id = posts.user_id WHERE posts.user_id = $user_id ORDER BY posts.`date` $sorting;")->fetchAll();
+  return db_query("SELECT posts.*, users.name, users.login, users.avatar FROM `posts` JOIN `users` ON users.id = posts.user_id ORDER BY posts.`date` $sorting;")->fetchAll();
 }
 
 function get_user_info($login)
@@ -141,6 +143,9 @@ function add_post($text, $image)
   if (mb_strlen($text) > 255) {
     $text = mb_substr($text, 0, 250) . ' ...';
   }
+  $text = preg_replace('/\s{2,}/', ' ', $text);
+  $array = explode(' ', $text);
+  $text = implode(' ', array_slice($array, 0, 50));
 
   $user_id = $_SESSION['user']['id'];
   $sql = "INSERT INTO `posts` (`id`, `user_id`, `text`, `image`) VALUES (NULL, $user_id, '$text', '$image');";
@@ -149,7 +154,19 @@ function add_post($text, $image)
 
 function delete_post($id)
 {
+  // echo '<pre>';
+  // // print_r(str_word_count($id));
+  // // print_r(explode(' ', $id));
+  // // print_r(preg_replace('/\s{2,}/', ' ', $id));
+  // // print_r(count(explode(' ', $id)));
+  // echo '</pre>';
+  // die;
   // проверка что передано число и оно больше нуля
-  $user_id = $_SESSION['user']['id'];
-  return db_query("DELETE FROM `posts` WHERE `id` = $id AND `user_id` = $user_id;", true);
+  if ((int)$id && $id > 0) {
+    $user_id = $_SESSION['user']['id'];
+    return db_query("DELETE FROM `posts` WHERE `id` = $id AND `user_id` = $user_id;", true);
+  } else {
+    $_SESSION['error'] = 'Такой статьи не существует, поэтому удаление не было произведено';
+    redirect('');
+  }
 }

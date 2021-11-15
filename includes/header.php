@@ -37,6 +37,6 @@
             <a href="<?php echo get_url('user_posts.php'); ?>" class="header__link header__link_profile" title="Твиты пользователя"></a>
             <a href="#" class="header__link header__link_likes" title="Понравившиеся твиты"></a>
           <?php } ?>
-          <a href="#" class="header__link header__link_sort" title="Сортировать"></a>
+          <a href="<?php echo get_url('sorted.php'); ?>" class="header__link header__link_sort" title="Сортировать"></a>
         </div>
       </section>
