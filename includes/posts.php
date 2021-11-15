@@ -27,8 +27,11 @@
               </div>
             </div>
             <footer>
-              <button class="tweet__like">0</button>
-              <!-- tweet__like_active -->
+              <?php
+              $class = '';
+              if (logged_in() && is_post_liked($post['id'])) $class = 'tweet__like_active';
+              ?>
+              <button class="tweet__like <?php echo $class ?>"><?php echo get_likes_count($post['id']); ?></button>
             </footer>
           </article>
         </li>
