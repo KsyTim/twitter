@@ -1,6 +1,6 @@
 </main>
 </div>
-<?php if (!isset($_SESSION['user'])) { ?>
+<?php if (!logged_in()) { ?>
   <div class="modal overlay">
     <div class="container modal__body" id="login-modal">
       <div class="modal-close">

@@ -15,6 +15,11 @@ function redirect($where)
   die;
 }
 
+function logged_in()
+{
+  return isset($_SESSION['user']['id']) && !empty($_SESSION['user']['id']);
+}
+
 function get_url($page = '')
 {
   return HOST . "/$page";
@@ -127,4 +132,24 @@ function get_error_message()
     $_SESSION['error'] = '';
   }
   return $error;
+}
+
+
+function add_post($text, $image)
+{
+  $text = trim($text);
+  if (mb_strlen($text) > 255) {
+    $text = mb_substr($text, 0, 250) . ' ...';
+  }
+
+  $user_id = $_SESSION['user']['id'];
+  $sql = "INSERT INTO `posts` (`id`, `user_id`, `text`, `image`) VALUES (NULL, $user_id, '$text', '$image');";
+  return db_query($sql, true);
+}
+
+function delete_post($id)
+{
+  // проверка что передано число и оно больше нуля
+  $user_id = $_SESSION['user']['id'];
+  return db_query("DELETE FROM `posts` WHERE `id` = $id AND `user_id` = $user_id;", true);
 }
