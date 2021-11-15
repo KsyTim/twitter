@@ -1,6 +1,6 @@
 <?php
 include_once('includes/functions.php');
-if (logged_in()) redirect('');
+if (logged_in()) redirect();
 $title = 'Регистрация';
 $error = get_error_message();
 include_once('includes/header.php');

@@ -28,10 +28,20 @@
             </div>
             <footer>
               <?php
-              $class = '';
-              if (logged_in() && is_post_liked($post['id'])) $class = 'tweet__like_active';
-              ?>
-              <button class="tweet__like <?php echo $class ?>"><?php echo get_likes_count($post['id']); ?></button>
+              // количество лайков - обращение к db
+              $likes_count = get_likes_count($post['id']);
+              if (logged_in()) {
+                // вывод активного (красного) лайка - что создает функционал для удаления лайка
+                if (is_post_liked($post['id'])) { ?>
+                  <a href="<?php echo get_url('includes/delete_like.php?id=' . $post['id']); ?>" class="tweet__like tweet__like_active"><?php echo $likes_count; ?></a>
+                  <!-- вывод неактивного (черного) лайка - возможность установить лайк -->
+                <?php } else { ?>
+                  <a href="<?php echo get_url('includes/add_like.php?id=' . $post['id']); ?>" class="tweet__like"><?php echo $likes_count; ?></a>
+                <?php } ?>
+                <!-- если пользователь не авторизован - то выводится количество неактивных (черных) лайков под постом - не дает возможности ни лайкать, ни анлайкать пост, необходима регистрация (не происходит клика в принципе) -->
+              <?php } else { ?>
+                <div class="tweet__like"><?php echo $likes_count; ?></div>
+              <?php } ?>
             </footer>
           </article>
         </li>

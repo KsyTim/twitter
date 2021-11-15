@@ -9,7 +9,7 @@ function debug($var, $stop = false)
   if ($stop) die;
 }
 
-function redirect($where)
+function redirect($where = '')
 {
   header("Location: " . get_url($where));
   die;
@@ -100,7 +100,7 @@ function register_user($auth_data)
   }
 
   if (add_user($auth_data['login'], $auth_data['pass'])) {
-    redirect('');
+    redirect();
   }
 }
 
@@ -110,7 +110,7 @@ function login($auth_data)
   $user = get_user_info($auth_data['login']);
   if (empty($user)) {
     $_SESSION['error'] = 'Логин или пароль был введен неправильно';
-    redirect('');
+    redirect();
   }
 
   if (password_verify($auth_data['pass'], $user['pass'])) {
@@ -120,7 +120,7 @@ function login($auth_data)
     redirect('user_posts.php?id=' . $user['id']);
   } else {
     $_SESSION['error'] = 'Пароль неверный';
-    redirect('');
+    redirect();
   }
   // debug($auth_data, true);
 }
@@ -160,7 +160,7 @@ function delete_post($id)
     return db_query("DELETE FROM `posts` WHERE `id` = $id AND `user_id` = $user_id;", true);
   } else {
     $_SESSION['error'] = 'Такой статьи не существует, поэтому удаление не было произведено';
-    redirect('');
+    redirect();
   }
 }
 
@@ -175,4 +175,20 @@ function is_post_liked($post_id)
   $user_id = $_SESSION['user']['id'];
   if (empty($post_id)) return false;
   return db_query("SELECT * FROM `likes` WHERE `post_id` = $post_id AND `user_id` = $user_id;")->rowCount() > 0;
+}
+
+function add_like($post_id)
+{
+  $user_id = $_SESSION['user']['id'];
+  if (empty($post_id)) return false;
+  $sql = "INSERT INTO `likes` (`post_id`, `user_id`) VALUES ($post_id, $user_id);";
+  return db_query($sql, true);
+}
+
+
+function delete_like($post_id)
+{
+  if (empty($post_id)) return false;
+  $user_id = $_SESSION['user']['id'];
+  return db_query("DELETE FROM `likes` WHERE `post_id` = $post_id AND `user_id` = $user_id;", true);
 }
