@@ -154,13 +154,6 @@ function add_post($text, $image)
 
 function delete_post($id)
 {
-  // echo '<pre>';
-  // // print_r(str_word_count($id));
-  // // print_r(explode(' ', $id));
-  // // print_r(preg_replace('/\s{2,}/', ' ', $id));
-  // // print_r(count(explode(' ', $id)));
-  // echo '</pre>';
-  // die;
   // проверка что передано число и оно больше нуля
   if ((int)$id && $id > 0) {
     $user_id = $_SESSION['user']['id'];
