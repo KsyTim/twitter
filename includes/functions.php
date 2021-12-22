@@ -22,7 +22,8 @@ function logged_in()
 
 function get_url($page = '')
 {
-  return HOST . "/$page";
+//   return HOST . "/twitter/$page";
+    return "https://timoshenkokseniia.ru/twitter/$page";
 }
 
 function get_page_title($title = '')

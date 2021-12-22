@@ -6,7 +6,7 @@ if (!logged_in()) redirect();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
   $id = $_GET['id'];
   // если пользователь авторизован, то его id из массива сессии
-} else if (isset($_SESSION['user']['id'])) {
+} else if (logged_in()) {
   $id = $_SESSION['user']['id'];
   // в противном случае равен 0
 } else {

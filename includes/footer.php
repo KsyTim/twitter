@@ -27,6 +27,7 @@
   </div>
 <?php } ?>
 <script src="<?php echo get_url('js/scripts.js'); ?>"></script>
+<!--<script src="./js/scripts.js"></script>-->
 <?php if ($error) echo '<script>openModal();</script>'; ?>
 </body>
 
